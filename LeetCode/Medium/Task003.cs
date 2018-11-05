@@ -37,34 +37,27 @@
             var length = default(int);
             var position = default(int);
             var result = default(int);
-            var hash = new Dictionary<char, int>();
+            var hash = new int[128];
 
             for (var i = 0; i < s.Length; i++)
             {
                 var symbol = s[i];
-                if (hash.ContainsKey(symbol))
+                position = hash[symbol];
+
+                if (position >= begin)
                 {
-                    position = hash[symbol];
+                    length = i - begin + 1;
+                    result = (result > length)
+                        ? result
+                        : length;
 
-                    if (position >= begin)
-                    {
-                        length = i - begin;
-                        result = (result > length)
-                            ? result
-                            : length;
-
-                        begin = position + 1;
-                    }
-
-                    hash[symbol] = i;
+                    begin = position + 1;
                 }
-                else
-                {
-                    hash.Add(symbol, i);
-                }
+
+                hash[symbol] = i + 1;
             }
 
-            length = s.Length - begin;
+            length = s.Length - begin + 1;
 
             return (result > length)
                 ? result
