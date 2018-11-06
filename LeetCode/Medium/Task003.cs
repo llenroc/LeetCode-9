@@ -1,7 +1,5 @@
 ﻿namespace LeetCode.Medium
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// Given a string, find the length of the longest substring without repeating characters.
     ///
@@ -44,24 +42,24 @@
                 var symbol = s[i];
                 position = hash[symbol];
 
-                if (position >= begin)
-                {
-                    length = i - begin + 1;
-                    result = (result > length)
-                        ? result
-                        : length;
+                hash[symbol] = i + 1;
 
-                    begin = position + 1;
+                if (position >= begin && position != 0)
+                {
+                    begin = position;
+                    length = i - position + 1;
+                }
+                else
+                {
+                    length++;
                 }
 
-                hash[symbol] = i + 1;
+                result = (result > length)
+                    ? result
+                    : length;
             }
 
-            length = s.Length - begin + 1;
-
-            return (result > length)
-                ? result
-                : length;
+            return result;
         }
 
         #endregion Public Methods
