@@ -35,24 +35,22 @@
             var length = default(int);
             var position = default(int);
             var result = default(int);
+            var symbol = default(char);
             var hash = new int[128];
 
             for (var i = 0; i < s.Length; i++)
             {
-                var symbol = s[i];
+                symbol = s[i];
                 position = hash[symbol];
-
-                hash[symbol] = i + 1;
 
                 if (position >= begin && position != 0)
                 {
                     begin = position;
-                    length = i - position + 1;
+                    length = i - position;
                 }
-                else
-                {
-                    length++;
-                }
+
+                hash[symbol] = i + 1;
+                length++;
 
                 result = (result > length)
                     ? result
