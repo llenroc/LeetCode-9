@@ -3,20 +3,19 @@
     using LeetCode.Easy;
     using Xunit;
 
-    public class Task007Tests
+    public class Task009Tests
     {
         #region Public Methods
 
         [Theory]
-        [InlineData(123, 321)]
-        [InlineData(-123, -321)]
-        [InlineData(120, 21)]
-        [InlineData(1534236469, 0)]
-        public void CanReverse(int input, int expected)
+        [InlineData(121, true)]
+        [InlineData(-121, false)]
+        [InlineData(10, false)]
+        public void CanDetectPalindrome(int input, bool expected)
         {
             // Arrange
             // Act
-            var result = new Task007().Reverse(input);
+            var result = new Task009().IsPalindrome(input);
 
             // Assert
             Assert.Equal(expected, result);
