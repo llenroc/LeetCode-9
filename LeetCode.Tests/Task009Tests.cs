@@ -11,6 +11,8 @@
         [InlineData(121, true)]
         [InlineData(-121, false)]
         [InlineData(10, false)]
+        [InlineData(0, true)]
+        [InlineData(1000021, false)]
         public void CanDetectPalindrome(int input, bool expected)
         {
             // Arrange
