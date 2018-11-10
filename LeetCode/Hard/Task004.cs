@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace LeetCode
+﻿namespace LeetCode.Hard
 {
+    using System;
+
     public class Task004
     {
         #region Public Methods

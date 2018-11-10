@@ -1,5 +1,6 @@
 ﻿namespace LeetCode.Tests
 {
+    using LeetCode.Hard;
     using Xunit;
 
     public class Task004Tests
