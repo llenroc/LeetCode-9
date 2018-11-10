@@ -14,6 +14,7 @@
         [InlineData(123, 321)]
         [InlineData(-123, -321)]
         [InlineData(120, 21)]
+        [InlineData(1534236469, 0)]
         public void CanReverse(int input, int expected)
         {
             // Arrange
