@@ -1,4 +1,6 @@
-﻿namespace LeetCode.Easy
+﻿using System.Collections.Generic;
+
+namespace LeetCode.Easy
 {
     /// <summary>
     /// Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
@@ -48,47 +50,28 @@
 
         public int RomanToInt(string s)
         {
-            var digit = default(int);
-            var result = default(int);
-
-            for (var i = s.Length - 1; i >= 0; i--)
+            var digits = new Dictionary<char, int>
             {
-                switch (s[i])
-                {
-                    case 'I':
-                        digit = (digit == 5 || digit == 10)
-                            ? -1
-                            : 1;
-                        break;
+                { 'I', 1 },
+                { 'V', 5 },
+                { 'X', 10 },
+                { 'L', 50 },
+                { 'C', 100 },
+                { 'D', 500 },
+                { 'M', 1000 }
+            };
 
-                    case 'V':
-                        digit = 5;
-                        break;
+            var digit = digits[s[s.Length - 1]];
+            var result = digit;
+            var value = default(int);
 
-                    case 'X':
-                        digit = (digit == 50 || digit == 100)
-                            ? -10
-                            : 10;
-                        break;
+            for (var i = s.Length - 2; i >= 0; i--)
+            {
+                value = digits[s[i]];
 
-                    case 'L':
-                        digit = 50;
-                        break;
-
-                    case 'C':
-                        digit = (digit == 500 || digit == 1000)
-                            ? -100
-                            : 100;
-                        break;
-
-                    case 'D':
-                        digit = 500;
-                        break;
-
-                    case 'M':
-                        digit = 1000;
-                        break;
-                }
+                digit = (value < digit)
+                    ? -value
+                    : value;
 
                 result += digit;
             }
