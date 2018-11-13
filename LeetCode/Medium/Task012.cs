@@ -1,7 +1,6 @@
 ﻿namespace LeetCode.Medium
 {
     using System;
-    using System.Collections.Generic;
     using System.Text;
 
     /// <summary>
@@ -52,64 +51,24 @@
 
         public string IntToRoman(int num)
         {
-            var digits = new Dictionary<int, char>
+            var digits = new string[][]
             {
-                { 1, 'I' },
-                { 5, 'V'},
-                { 10, 'X' },
-                { 50, 'L' },
-                { 100, 'C' },
-                { 500, 'D' },
-                { 1000, 'M' }
+                new string[] { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" },
+                new string[] { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" },
+                new string[] { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" },
+                new string[] { "", "M", "MM", "MMM" }
             };
 
+            var digit = default(int);
             var result = new StringBuilder();
-            var part = default(int);
-            var pivot = default(int);
 
-            for (var i = 1; num != 0; i++)
+            for (var i = 0; i < digits.Length; i++)
             {
-                pivot = (int)(Math.Pow(10, i));
-                part = num % pivot;
-                num -= part;
+                digit = num % (int)Math.Pow(10, i + 1) / (int)Math.Pow(10, i);
 
-                var digit = (part % pivot) / Math.Pow(10, i - 1);
+                result.Insert(0, digits[i][digit]);
 
-                switch (digit)
-                {
-                    case 1:
-                    case 2:
-                    case 3:
-                        for (var j = 0; j < digit; j++)
-                        {
-                            result.Insert(0, digits[pivot / 10]);
-                        }
-                        break;
-
-                    case 4:
-                        result.Insert(0, digits[pivot / 2]);
-                        result.Insert(0, digits[pivot / 10]);
-                        break;
-
-                    case 5:
-                        result.Insert(0, digits[pivot / 2]);
-                        break;
-
-                    case 6:
-                    case 7:
-                    case 8:
-                        for (var j = 0; j < digit % 5; j++)
-                        {
-                            result.Insert(0, digits[pivot / 10]);
-                        }
-                        result.Insert(0, digits[pivot / 2]);
-                        break;
-
-                    case 9:
-                        result.Insert(0, digits[pivot]);
-                        result.Insert(0, digits[pivot / 10]);
-                        break;
-                }
+                num -= digit;
             }
 
             return result.ToString();
