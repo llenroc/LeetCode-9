@@ -10,6 +10,8 @@
         [Theory]
         [InlineData(new string[] { "flower", "flow", "flight" }, "fl")]
         [InlineData(new string[] { "dog", "racecar", "car" }, "")]
+        [InlineData(new string[] { "", "" }, "")]
+        [InlineData(new string[] { "c", "c" }, "c")]
         public void CanDetectLongestCommonPrefix(string[] input, string expected)
         {
             // Arrange
