@@ -13,6 +13,9 @@
         [InlineData("(]", false)]
         [InlineData("([)]", false)]
         [InlineData("{[]}", true)]
+        [InlineData("]", false)]
+        [InlineData("", true)]
+        [InlineData("([]", false)]
         public void CanDetectIsValid(string input, bool expected)
         {
             // Arrange
