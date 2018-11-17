@@ -108,10 +108,8 @@
                 return result.ToArray();
             }
 
-            public override string ToString()
-            {
-                return string.Join(", ", ToArray(this));
-            }
+            public override string ToString() => 
+                string.Join(", ", ToArray(this));
 
             #endregion Public Methods
         }
