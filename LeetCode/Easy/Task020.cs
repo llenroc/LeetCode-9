@@ -1,8 +1,5 @@
 ﻿namespace LeetCode.Easy
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
     ///
@@ -38,33 +35,24 @@
 
         public bool IsValid(string s)
         {
-            if (string.IsNullOrEmpty(s))
-            {
-                return true;
-            }
-
-            var hash = new Dictionary<char, char>
-            {
-                { '(', ')' },
-                { '{', '}' },
-                { '[', ']' }
-            };
-
-            var stack = new Stack<char>();
+            var stack = new char[s.Length + 1];
+            var index = 1;
 
             foreach (var symbol in s)
             {
-                if (hash.Keys.Contains(symbol))
+                if (symbol == '(' || symbol == '{' || symbol == '[')
                 {
-                    stack.Push(symbol);
+                    stack[index++] = symbol;
                 }
-                else if (stack.Count == 0 || (stack.Count != 0 && hash[stack.Pop()] != symbol))
+                else if ((symbol == ')' && stack[--index] != '(')
+                    || (symbol == '}' && stack[--index] != '{')
+                    || (symbol == ']' && stack[--index] != '['))
                 {
                     return false;
                 }
             }
 
-            return stack.Count == 0;
+            return index == 1;
         }
 
         #endregion Public Methods
