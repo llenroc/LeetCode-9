@@ -18,52 +18,25 @@
         {
             var result = new ListNode(default(int));
 
-            var current = result;
+            var temp = result;
 
             var temp1 = l1;
             var temp2 = l2;
 
             while (temp1 != null || temp2 != null)
             {
-                if (temp1 != null && temp2 != null)
+                if (temp2 == null || temp1?.val < temp2.val)
                 {
-                    if (temp1.val < temp2.val)
-                    {
-                        current.next = new ListNode(temp1.val);
-                        temp1 = temp1?.next;
-                        current = current?.next;
-                    }
-                    else if (temp1.val > temp2.val)
-                    {
-                        current.next = new ListNode(temp2.val);
-                        temp2 = temp2?.next;
-                        current = current?.next;
-                    }
-                    else
-                    {
-                        current.next = new ListNode(temp1.val)
-                        {
-                            next = new ListNode(temp2.val)
-                        };
-
-                        temp1 = temp1?.next;
-                        temp2 = temp2?.next;
-
-                        current = current.next.next;
-                    }
+                    temp.next = temp1;
+                    temp1 = temp1.next;
                 }
-                else if (temp1 == null)
+                else
                 {
-                    current.next = new ListNode(temp2.val);
+                    temp.next = temp2;
                     temp2 = temp2?.next;
-                    current = current?.next;
                 }
-                else if (temp2 == null)
-                {
-                    current.next = new ListNode(temp1.val);
-                    temp1 = temp1?.next;
-                    current = current?.next;
-                }
+
+                temp = temp.next;
             }
 
             return result.next;
