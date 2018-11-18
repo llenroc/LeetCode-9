@@ -16,7 +16,57 @@
 
         public ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
-            return default(ListNode);
+            var result = new ListNode(default(int));
+
+            var current = result;
+
+            var temp1 = l1;
+            var temp2 = l2;
+
+            while (temp1 != null || temp2 != null)
+            {
+                if (temp1 != null && temp2 != null)
+                {
+                    if (temp1.val < temp2.val)
+                    {
+                        current.next = new ListNode(temp1.val);
+                        temp1 = temp1?.next;
+                        current = current?.next;
+                    }
+                    else if (temp1.val > temp2.val)
+                    {
+                        current.next = new ListNode(temp2.val);
+                        temp2 = temp2?.next;
+                        current = current?.next;
+                    }
+                    else
+                    {
+                        current.next = new ListNode(temp1.val)
+                        {
+                            next = new ListNode(temp2.val)
+                        };
+
+                        temp1 = temp1?.next;
+                        temp2 = temp2?.next;
+
+                        current = current.next.next;
+                    }
+                }
+                else if (temp1 == null)
+                {
+                    current.next = new ListNode(temp2.val);
+                    temp2 = temp2?.next;
+                    current = current?.next;
+                }
+                else if (temp2 == null)
+                {
+                    current.next = new ListNode(temp1.val);
+                    temp1 = temp1?.next;
+                    current = current?.next;
+                }
+            }
+
+            return result.next;
         }
 
         #endregion Public Methods
@@ -45,6 +95,11 @@
 
             public static ListNode Assemble(int[] num)
             {
+                if (num.Length == 0)
+                {
+                    return null;
+                }
+
                 var result = new ListNode(num[0]);
                 var temp = result;
 
@@ -59,6 +114,11 @@
 
             public static int[] ToArray(ListNode num)
             {
+                if (num == null)
+                {
+                    return new int[] { };
+                }
+
                 var result = new List<int>();
                 var temp = num;
 
