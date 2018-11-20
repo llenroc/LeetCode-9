@@ -58,18 +58,18 @@ namespace LeetCode.Problem.Medium
         {
             var index = default(int);
             var result = default(int);
-            var negative = default(bool);
+            var sign = 1;
 
             str = str.TrimStart(' ');
 
             if (str.Length > 0 && str[0] == 45)
             {
-                negative = true;
+                sign = -1;
                 index++;
             }
             else if (str.Length > 0 && str[0] == 43)
             {
-                negative = false;
+                sign = 1;
                 index++;
             }
 
@@ -79,30 +79,18 @@ namespace LeetCode.Problem.Medium
             {
                 digit = str[index] - 48;
 
-                try
+                if (result > (int.MaxValue - digit) / 10)
                 {
-                    checked
-                    {
-                        result = (negative)
-                            ? result * 10 - digit
-                            : result * 10 + digit;
-                    }
-                    index++;
+                    return sign == -1
+                        ? int.MinValue
+                        : int.MaxValue;
                 }
-                catch(OverflowException)
-                {
-                    if (negative)
-                    {
-                        return int.MinValue;
-                    }
-                    else
-                    {
-                        return int.MaxValue;
-                    }
-                }
+
+                result = result * 10 + digit;
+                index++;
             }
 
-            return result;
+            return result * sign;
         }
 
         #endregion Public Methods
