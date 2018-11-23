@@ -19,23 +19,26 @@
         public int MaxArea(int[] height)
         {
             var result = default(int);
+            var area = default(int);
+            var left = 0;
+            var right = height.Length - 1;
 
-            for (var i = 0; i < height.Length; i++)
+            for (var i = 0; left < right; i++)
             {
-                for (var j = i + 1; j < height.Length; j++)
+                if (height[left] > height[right])
                 {
-                    var side1 = (height[i] > height[j])
-                        ? height[j]
-                        : height[i];
+                    area = height[right] * (right - left);
+                    right--;
+                }
+                else
+                {
+                    area = height[left] * (right - left);
+                    left++;
+                }
 
-                    var side2 = j - i;
-
-                    var area = side1 * side2;
-
-                    if (area > result)
-                    {
-                        result = area;
-                    }
+                if (area > result)
+                {
+                    result = area;
                 }
             }
 
