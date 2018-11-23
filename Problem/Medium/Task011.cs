@@ -23,7 +23,7 @@
             var left = 0;
             var right = height.Length - 1;
 
-            for (var i = 0; left < right; i++)
+            while (left < right)
             {
                 if (height[left] > height[right])
                 {
