@@ -9,6 +9,8 @@
 
         [Theory]
         [Trait("Difficulty", "Easy")]
+        [Trait("Topic", "String")]
+        [Trait("Topic", "Stack")]
         [InlineData("()", true)]
         [InlineData("()[]{}", true)]
         [InlineData("(]", false)]

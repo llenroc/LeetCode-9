@@ -9,6 +9,7 @@
 
         [Theory]
         [Trait("Difficulty", "Easy")]
+        [Trait("Topic", "Math")]
         [InlineData(123, 321)]
         [InlineData(-123, -321)]
         [InlineData(120, 21)]

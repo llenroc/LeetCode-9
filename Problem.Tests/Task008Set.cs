@@ -9,6 +9,8 @@
 
         [Theory]
         [Trait("Difficulty", "Medium")]
+        [Trait("Topic", "Math")]
+        [Trait("Topic", "String")]
         [InlineData("42", 42)]
         [InlineData("-42", -42)]
         [InlineData("4193 with words", 4193)]

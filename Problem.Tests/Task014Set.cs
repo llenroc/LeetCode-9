@@ -9,6 +9,7 @@
 
         [Theory]
         [Trait("Difficulty", "Easy")]
+        [Trait("Topic", "String")]
         [InlineData(new[] { "flower", "flow", "flight" }, "fl")]
         [InlineData(new[] { "dog", "racecar", "car" }, "")]
         [InlineData(new[] { "", "" }, "")]

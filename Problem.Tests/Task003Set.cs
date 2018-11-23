@@ -9,6 +9,9 @@
 
         [Theory]
         [Trait("Difficulty", "Medium")]
+        [Trait("Topic", "Hash Table")]
+        [Trait("Topic", "Two Pointers")]
+        [Trait("Topic", "String")]
         [InlineData("abcabcbb", 3)]
         [InlineData("pwwkew", 3)]
         [InlineData("aab", 2)]

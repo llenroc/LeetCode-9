@@ -9,6 +9,8 @@
 
         [Theory]
         [Trait("Difficulty", "Easy")]
+        [Trait("Topic", "Math")]
+        [Trait("Topic", "String")]
         [InlineData("III", 3)]
         [InlineData("IV", 4)]
         [InlineData("IX", 9)]

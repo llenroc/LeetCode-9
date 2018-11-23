@@ -9,6 +9,7 @@
 
         [Theory]
         [Trait("Difficulty", "Easy")]
+        [Trait("Topic", "Linked List")]
         [InlineData(new[] { 1, 2, 4 }, new[] { 1, 3, 4 }, new[] { 1, 1, 2, 3, 4, 4 })]
         [InlineData(new int[] { }, new int[] { }, new int[] { })]
         [InlineData(new int[] { }, new[] { 0 }, new[] { 0 })]
