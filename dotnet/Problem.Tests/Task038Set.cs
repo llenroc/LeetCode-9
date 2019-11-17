@@ -20,6 +20,7 @@
         [InlineData(8, "1113213211")]
         [InlineData(9, "31131211131221")]
         [InlineData(10, "13211311123113112211")]
+        [InlineData(30, "13211311123113112211")]
         public void CanCountAndSay(int number, string word)
         {
             // Arrange

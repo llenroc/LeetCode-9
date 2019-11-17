@@ -1,5 +1,6 @@
 ﻿namespace LeetCode.Problem.Easy
 {
+    using System;
     using System.Text;
 
     /// <summary>
